@@ -1,5 +1,6 @@
 const elProducts = document.getElementById('products');
 const elBtn = document.getElementById('btn');
+const elMovies = document.getElementById('movies');
 
 let currentIndex = 0;
 const itemsPerPage = 5;
@@ -61,3 +62,55 @@ renderItems();
 elBtn.addEventListener('click', () => {
   renderItems();
 });
+
+
+movies.forEach((item, index) => {
+
+  let elItem = document.createElement('li');
+  let elItemImg = document.createElement('img');
+  let elItemTitle = document.createElement('h5');
+  let elRatingDiv = document.createElement('div');
+  let elItemRating = document.createElement('span');
+  let elDirector = document.createElement('span');
+  let elYear = document.createElement('mark');
+  let elDescription = document.createElement('p');
+  let elGanre = document.createElement('h5');
+
+  elItemImg.src = item.poster;
+  elItemTitle.textContent = item.title;
+  const maxLength = 45;
+  if (elItemTitle.textContent.length > maxLength) {
+    elItemTitle.textContent = item.title.slice(0, maxLength) + "...";
+  } else {
+    elItemTitle.textContent = item.title;
+  }
+
+  elItemRating.textContent = "★" + " " + item.rating;
+  elDirector.textContent = " " + "Directors: " + item.director;
+  elGanre.textContent = item.genre;
+  elDescription.textContent = item.description;
+  const maximum = 50
+  if (elDescription.textContent.length > maximum) {
+    elDescription.textContent = item.description.slice(0, maximum) + "...";
+  } else {
+    elDescription.textContent = item.description;
+  }
+  elYear.textContent = "year: " + item.year;
+  elRatingDiv.style.display = "flex";
+  elRatingDiv.style.alignItems = "center";
+  elRatingDiv.style.gap = "10px"
+
+  elMovies.append(elItem);
+  elItem.append(elItemImg);
+  elItem.append(elItemTitle);
+  elItem.append(elRatingDiv);
+  elRatingDiv.append(elItemRating);
+  elRatingDiv.append(elDirector);
+  elItem.append(elGanre);
+  elItem.append(elYear);
+  elItem.append(elDescription);
+
+})
+
+
+
